@@ -34,18 +34,9 @@ gulp.task('clean', function() {
 });
 
 /**
- * JShint all *.js files
- */
-gulp.task('lint', function () {
-  return gulp.src('./src/main/javascript/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
-});
-
-/**
  * Build a distribution
  */
-gulp.task('dist', ['clean', 'lint'], _dist);
+gulp.task('dist', ['clean'], _dist);
 function _dist() {
   return es.merge(
     gulp.src([
@@ -69,7 +60,7 @@ function _dist() {
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
 }
-gulp.task('dev-dist', ['lint', 'dev-copy'], _dist);
+gulp.task('dev-dist', ['dev-copy'], _dist);
 
 /**
  * Processes less files into CSS files
